@@ -14,7 +14,7 @@ Citizen.CreateThread(function()
 				imMarker = true
 			end
 			if imMarker and IsControlJustReleased(0, 38) then
-				TriggerEvent('inventory:openHouse', ESX.GetPlayerData().identifier, 'Lager', 'Lager', 10000)
+				TriggerEvent('inventory:openHouse', ESX.GetPlayerData().identifier, 'Lager', 'Lager', Config.StorageSize)
 			end
 		end
 	Citizen.Wait(5)	
