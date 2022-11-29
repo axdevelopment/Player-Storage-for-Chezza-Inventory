@@ -6,7 +6,7 @@ Citizen.CreateThread(function()
 		for i = 1, #Config.Locations, 1 do
 		local lagerLocation 	= Config.Locations[i]
 		local distance		= GetDistanceBetweenCoords(coords, lagerLocation)
-			if distance < 3.0 then
+			if distance < Config.DrawDistance then
 				DrawMarker(20, lagerLocation, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 155, 0, 0, 200, false, true, 2, nil, nil, false)
 			end
 			if distance < 1.0 then
