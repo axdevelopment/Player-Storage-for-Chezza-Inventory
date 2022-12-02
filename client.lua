@@ -1,6 +1,8 @@
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function()
-	showBlips()
+	if Config.Lager.Blips.Enabled then
+		showBlips()
+	end
 end)
 
 Citizen.CreateThread(function()
