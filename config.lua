@@ -9,9 +9,9 @@ Config.Lager = {
 	},
 	Name				= "Lager",                              -- name & id of the storage
 	MarkerType			= 20,					-- marker type https://docs.fivem.net/docs/game-references/markers/
-	MarkerColor 		= {r = 155, g = 0, b = 0},			-- color of the marker (rgb)
+	MarkerColor 			= {r = 155, g = 0, b = 0},		-- color of the marker (rgb)
 	MarkerSize			= {x = 0.5, y = 0.5, z = 0.5},		-- markersize
-	MarkerDrawDistance	= 3.0,						-- marker draw distance
+	MarkerDrawDistance		= 3.0,					-- marker draw distance
 	Blips = {
 		Enabled			= true,
 		Name 			= "Lager",                              -- blip name
