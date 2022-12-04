@@ -24,7 +24,7 @@ Citizen.CreateThread(function()
 				TriggerEvent('inventory:openHouse', ESX.GetPlayerData().identifier, Config.Lager.Name, Config.Lager.Name, 10000)
 			end
 		end
-		Citizen.Wait(0)	
+		Citizen.Wait(1)	
 	end
 end)
 
