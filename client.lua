@@ -24,7 +24,7 @@ CreateThread(function()
 				waitTime = 0
 			end
 			if imMarker and IsControlJustReleased(0, 38) then
-				TriggerEvent('inventory:openHouse', ESX.GetPlayerData().identifier, "Storage", "Storage", Config.Storage.Size)
+				TriggerEvent('inventory:openHouse', ESX.GetPlayerData().identifier, Config.Storage.Name, Config.Storage.Name, Config.Storage.Size)
 			end
 		end
 		Wait(waitTime)	
