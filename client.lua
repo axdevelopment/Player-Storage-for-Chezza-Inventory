@@ -5,41 +5,49 @@ AddEventHandler('esx:playerLoaded', function()
 	end
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while true do
+	waitTime = 500
 	local playerPed 	= PlayerPedId()
 	local coords 		= GetEntityCoords(playerPed)
 	local imMarker		= false
-		for _, info in pairs(Config.Lager) do
-		local lagerLocation = Config.Lager.Locations[1]
-		local distance		= GetDistanceBetweenCoords(coords, lagerLocation)
-			if distance < Config.Lager.MarkerDrawDistance then
-				DrawMarker(Config.Lager.MarkerType, lagerLocation, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Lager.MarkerSize.x, Config.Lager.MarkerSize.y, Config.Lager.MarkerSize.z, Config.Lager.MarkerColor.r, Config.Lager.MarkerColor.g, Config.Lager.MarkerColor.b, 200, false, true, 2, nil, nil, false)
+	for i=1, #Config.StorageLocations, 1 do
+		local storageLocation = Config.StorageLocations[i]
+		local distance		= GetDistanceBetweenCoords(coords, storageLocation)
+			if distance < 10 then
+				DrawMarker(20, storageLocation, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, Config.Storage.MarkerColor.r, Config.Storage.MarkerColor.g, Config.Storage.MarkerColor.b, Config.Storage.MarkerColor.a, 200, false, true, 2, nil, nil, false)
+				waitTime = 0
 			end
 			if distance < 1.5 then
-				ESX.ShowHelpNotification(Config.HelpNotificationText)
+				helpNotify(Config.HelpNotificationText)
 				imMarker = true
+				waitTime = 0
 			end
 			if imMarker and IsControlJustReleased(0, 38) then
-				TriggerEvent('inventory:openHouse', ESX.GetPlayerData().identifier, Config.Lager.Name, Config.Lager.Name, 10000)
+				TriggerEvent('inventory:openHouse', ESX.GetPlayerData().identifier, "Storage", "Storage", Config.Storage.Size)
 			end
 		end
-		Citizen.Wait(1)	
+		Wait(waitTime)	
 	end
 end)
 
 function showBlips()
-	for _, info in pairs(Config.Lager) do
-	local blipLocation = Config.Lager.Locations[1]
+	for  i=1, #Config.StorageLocations, 1 do
+	local blipLocation = Config.StorageLocations[i]
 	blip = AddBlipForCoord(blipLocation)
-	SetBlipSprite(blip, Config.Lager.Blips.Sprite)
-	SetBlipScale(blip, Config.Lager.Blips.Size)
-	SetBlipColour(blip, Config.Lager.Blips.Color)
+	SetBlipSprite(blip, Config.Storage.Blips.Sprite)
+	SetBlipScale(blip, Config.Storage.Blips.Size)
+	SetBlipColour(blip, Config.Storage.Blips.Color)
 	SetBlipAlpha(blip, 255)
 	SetBlipAsShortRange(blip, true)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString(Config.Lager.Blips.Name)
+	AddTextComponentString(Config.Storage.Blips.Name)
 	EndTextCommandSetBlipName(blip)
 	end
 end
 
+function helpNotify(msg)
+	BeginTextCommandDisplayHelp('STRING')
+	AddTextComponentSubstringPlayerName(msg)
+	EndTextCommandDisplayHelp(0, false, true, -1)
+end
