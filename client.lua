@@ -14,7 +14,7 @@ CreateThread(function()
 	for i=1, #Config.StorageLocations, 1 do
 		local storageLocation = Config.StorageLocations[i]
 		local distance		= GetDistanceBetweenCoords(coords, storageLocation)
-			if distance < 10 then
+			if distance < Config.Storage.MarkerDrawDistance then
 				DrawMarker(20, storageLocation, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Storage.MarkerSize.x, Config.Storage.MarkerSize.y, Config.Storage.MarkerSize.z, Config.Storage.MarkerColor.r, Config.Storage.MarkerColor.g, Config.Storage.MarkerColor.b, Config.Storage.MarkerColor.a, 200, false, true, 2, nil, nil, false)
 				waitTime = 0
 			end
