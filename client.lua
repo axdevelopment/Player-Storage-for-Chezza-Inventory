@@ -1,6 +1,6 @@
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function()
-	if Config.Lager.Blips.Enabled then
+	if Config.Storage.Blips.Enabled then
 		showBlips()
 	end
 end)
